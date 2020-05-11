@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="CompService.Views.StaffEntryPage"
+             xmlns:local="clr-namespace:CompService">
+
+    <StackLayout Margin="10">
+        
+        <Label Text="Imię:" FontSize="Medium" />
+        <Entry x:Name="NameEntry"
+               Text="{Binding Name}"/>
+
+        <Label Text="Nazwisko:" FontSize="Medium" />
+        <Entry x:Name="LastnameEntry"
+               Text="{Binding Lastname}"/>
+
+        <Label Text="Email:" FontSize="Medium" />
+        <Entry x:Name="EmailEntry"
+               Text="{Binding Email}"/>
+        
+        <Label Text="Hasło:" FontSize="Medium" />
+        <Entry x:Name="PasswordEntry"
+               Text="{Binding Password}"/>
+
+        <Label Text="Telefon:" FontSize="Medium" />
+        <Entry x:Name="PhoneEntry" 
+               Keyboard="Numeric" 
+               Text="{Binding Phone}">
+            <Entry.Behaviors>
+                <local:NumericValidationBehavior/>
+            </Entry.Behaviors>
+        </Entry>
+
+        <Label Text="Typ" FontSize="Medium"/>
+        <Picker x:Name="TypeOfWorkerPicker"
+        Title="Wybierz typ"
+        TitleColor="Red">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Stażysta</x:String>
+                    <x:String>Pracownik</x:String>
+                    <x:String>Kierwonik</x:String>
+                    <x:String>Szef</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Text="Save"
+                    Clicked="OnSaveButtonClicked" />
+            <Button Grid.Column="1"
+                    Text="Delete"
+                    Clicked="OnDeleteButtonClicked"/>
+        </Grid>
+    </StackLayout>
+
+</ContentPage>

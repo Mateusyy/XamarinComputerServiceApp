@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="CompService.Views.RepairEntryPage"
+             xmlns:local="clr-namespace:CompService">
+
+    <StackLayout Margin="10">
+
+        <Label Text="Nazwa:" FontSize="Medium" />
+        <Entry x:Name="NameEntry"
+               Text="{Binding Name}"/>
+
+        <Label Text="Opis:" FontSize="Medium" />
+        <Editor x:Name="DescriptionEntry"
+                Text="{Binding Description}"/>
+
+        <Label Text="Numer serii:" FontSize="Medium" />
+        <Entry x:Name="SerialNumberEntry"
+               Text="{Binding SerialNumber}"/>
+
+        <Label Text="Status" FontSize="Medium"/>
+        <Picker x:Name="StatusPicker"
+        Title="Status"
+        TitleColor="Red">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Nie rozpoczęty</x:String>
+                    <x:String>W kolejce</x:String>
+                    <x:String>W trakcie</x:String>
+                    <x:String>Prawie ukonczone</x:String>
+                    <x:String>Ukonczone</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
+
+        <Label Text="Cena Katalogowa" FontSize="Medium"/>
+        <Picker x:Name="PriceCatalogPicker"
+                Title="Cena Katalogowa"
+                TitleColor="Red"
+                ItemDisplayBinding="{Binding Name}">
+            <d:Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Item</x:String>
+                </x:Array>
+            </d:Picker.ItemsSource>
+        </Picker>
+
+        <Label Text="Dodatkowe koszty:" FontSize="Medium" />
+        <Entry x:Name="AdditionalCostEntry" 
+               Keyboard="Numeric" 
+               Text="{Binding AdditionalCost}">
+            <Entry.Behaviors>
+                <local:NumericValidationBehavior/>
+            </Entry.Behaviors>
+        </Entry>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Text="Save"
+                    Clicked="OnSaveButtonClicked" />
+            <Button Grid.Column="1"
+                    Text="Delete"
+                    Clicked="OnDeleteButtonClicked"/>
+        </Grid>
+    </StackLayout>
+
+</ContentPage>

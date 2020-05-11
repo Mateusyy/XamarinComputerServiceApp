@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="CompService.Views.PriceCatalogEntryPage"
+             xmlns:local="clr-namespace:CompService">
+    
+    <StackLayout Margin="20">
+        <Label Text="Nazwa funckji:" FontSize="Medium" />
+        <Entry x:Name="NameEntry"
+               Text="{Binding Name}"/>
+        <Label Text="Kwota:" FontSize="Medium" />
+        <Entry x:Name="PriceEntry" 
+               Keyboard="Numeric" 
+               Text="{Binding Price}">
+            <Entry.Behaviors>
+                <local:NumericValidationBehavior/>
+            </Entry.Behaviors>
+        </Entry>
+        
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Text="Save"
+                    Clicked="OnSaveButtonClicked" />
+            <Button Grid.Column="1"
+                    Text="Delete"
+                    Clicked="OnDeleteButtonClicked"/>
+        </Grid>
+    </StackLayout>
+    
+</ContentPage>
